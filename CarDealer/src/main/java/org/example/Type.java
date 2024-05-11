@@ -1,2 +1,5 @@
-package org.example;public class Type {
+package org.example;
+
+public enum Type {
+    SUV, SEDAN, HATCHBACK, COUPE
 }
