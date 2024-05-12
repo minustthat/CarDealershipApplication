@@ -7,10 +7,9 @@ public class DealershipFileManager {
     {
         File dealerFile = new File("inventory.csv");
         try {
-            FileWriter fileWriter = new FileWriter(dealerFile, true);
+            FileWriter fileWriter = new FileWriter(dealerFile);
             PrintWriter printWriter = new PrintWriter(fileWriter);
-            printWriter.println("");
-
+            printWriter.println("hi");
         }
         catch(Exception e)
         {
