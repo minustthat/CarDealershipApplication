@@ -11,7 +11,7 @@ public class Main {
 
 
     public static void main(String[] args) {
-        writeAllToFile(); 
+        writeAllToFile();
         Scanner scanner = new Scanner(System.in);
         homeScreen();
         int userChoice = scanner.nextInt();
