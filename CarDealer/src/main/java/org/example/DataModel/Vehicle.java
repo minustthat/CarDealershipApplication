@@ -1,6 +1,8 @@
-package org.example;
+package org.example.DataModel;
 
- public class Vehicle {
+import org.example.Type;
+
+public class Vehicle {
         int vinNumber;
         int year;
         String make;

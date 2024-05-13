@@ -1,18 +1,17 @@
 package org.example;
 
-import java.util.Locale;
 import java.util.Scanner;
 
-import static org.example.Dealership.*;
-import static org.example.DealershipFileManager.writeFile;
-import static org.example.UserInterface.homeScreen;
-import static org.example.UserInterface.inventorySearch;
+import static org.example.DataModel.Dealership.*;
+import static org.example.DealershipFileManagers.DealershipFileManager.writeAllToFile;
+import static org.example.userInterface.UserInterface.homeScreen;
+import static org.example.userInterface.UserInterface.inventorySearch;
 
 public class Main {
 
 
     public static void main(String[] args) {
-        writeFile();
+        writeAllToFile(); 
         Scanner scanner = new Scanner(System.in);
         homeScreen();
         int userChoice = scanner.nextInt();

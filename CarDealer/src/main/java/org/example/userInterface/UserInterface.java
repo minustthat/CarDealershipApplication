@@ -1,12 +1,12 @@
-package org.example;
+package org.example.userInterface;
 
 import java.util.Scanner;
 
-import static org.example.Dealership.*;
-import static org.example.Dealership.listAllVehicles;
+import static org.example.DataModel.Dealership.*;
+import static org.example.DataModel.Dealership.listAllVehicles;
 
 public class UserInterface {
-    static void inventorySearch(Scanner scanner) {
+    public static void inventorySearch(Scanner scanner) {
         System.out.printf("""
              How would you like to search? 
             1. Price Range 
@@ -26,6 +26,7 @@ public class UserInterface {
                 getVehicleByMakeAndModel();
                 break;
             case 3:
+                getVehicleByYear();
                 break;
             case 4:
                 getVehicleByColor();
@@ -40,7 +41,7 @@ public class UserInterface {
                 listAllVehicles();
         }
     }
-     static void homeScreen() {
+     public static void homeScreen() {
         System.out.printf("""
                 Welcome to %s , %s %s 
                 Please choose of of the following: 

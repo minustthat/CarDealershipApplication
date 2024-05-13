@@ -1,9 +1,11 @@
-package org.example;
+package org.example.DealershipFileManagers;
+
+import org.example.Type;
+import org.example.DataModel.Vehicle;
 
 import java.io.*;
-import java.util.Scanner;
 
-import static org.example.Dealership.*;
+import static org.example.DataModel.Dealership.*;
 
 public class DealershipFileManager {
     public static void writeAllToFile(){
@@ -26,7 +28,7 @@ public class DealershipFileManager {
             System.out.println("hm... Something went wrong");
         }
     }
-    public static void readFile(){
+    public static void readFromFile(){
         File dealerFile = new File("inventory.csv");
 
         try(BufferedReader reader = new BufferedReader(new FileReader(dealerFile))){
@@ -44,7 +46,7 @@ public class DealershipFileManager {
                 double price = Double.parseDouble(cols[7]);
                 Vehicle vehicle = new Vehicle(vin, year, make, model, type, color, mileage, price);
                 vehicleInventory.add(vehicle);
-                System.out.println(vehicle);
+
 
             }
 

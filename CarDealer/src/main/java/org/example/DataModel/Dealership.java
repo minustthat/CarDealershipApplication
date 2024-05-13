@@ -1,4 +1,6 @@
-package org.example;
+package org.example.DataModel;
+
+import org.example.Type;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,12 +8,15 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import static org.example.DealershipFileManagers.DealershipFileManager.writeAllToFile;
+
 
 public class Dealership {
-    static final String TITLE = "O'NEALERSHIP";
-    static final String ADDRESS = "52 GRANDEUR AVE";
+    public static final String TITLE = "O'NEALERSHIP";
+    public static final String ADDRESS = "52 GRANDEUR AVE";
     // <editor-fold desc="List of Vehicles">
-    static List<Vehicle> vehicleInventory = new ArrayList<>(Arrays.asList(new Vehicle(11121, 2021, "Honda", "Civic", Type.SEDAN, "Blue", 109000, 12000),
+    public static List<Vehicle> vehicleInventory = new ArrayList<>(Arrays.asList(new Vehicle(11121, 2021, "Honda",
+                                                                                                        "Civic", Type.SEDAN, "Blue", 109000, 12000),
             new Vehicle(11122, 2021, "Jeep", "Compass", Type.SUV, "Red", 1000, 34000),
             new Vehicle(11123, 2022, "Acura", "TL", Type.COUPE, "Black", 20000, 26000),
             new Vehicle(11124, 2020, "Jeep", "Wrangler", Type.SUV, "Orange", 500, 37000),
@@ -24,27 +29,38 @@ public class Dealership {
             new Vehicle(11131, 2019, "Subaru", "Outback", Type.HATCHBACK, "Yellow", 34500, 23476))
     );
 // </editor-fold>
-    static final String PHONE_NUMBER = "(818)-273-4950";
+    public static final String PHONE_NUMBER = "(818)-273-4950";
 
     public static void listAllVehicles() {
+//        readFile();
         vehicleInventory.forEach(Dealership::carToString);
     }
 
 
     public static void carToString(Vehicle vehicle) {
         String vehicles =
-                "Vin: " + vehicle.vinNumber + "\n" + "Year: " + vehicle.year + "\n" + "Make: " + vehicle.make +
+                "Vin: " + vehicle.getVinNumber() + "\n" + "Year: " + vehicle.getYear() + "\n" + "Make: " + vehicle.getMake() +
                         "\n" +
-                        "Model: " + vehicle.model + " " + vehicle.type + "\n" + "Color: " + vehicle.color + "\n" +
-                        "Mileage: " + vehicle.odometerReading + "\n" + "Price: " + vehicle.price +
+                        "Model: " + vehicle.getModel() + " " + vehicle.getType() + "\n" + "Color: " + vehicle.getColor() + "\n" +
+                        "Mileage: " + vehicle.getOdometerReading() + "\n" + "Price: " + vehicle.getPrice() +
                         "\n -------------------------";
 
         System.out.println(vehicles);
 
     }
 
-    public static void removeVehicle() {
 
+    public static void removeVehicle() {
+        Scanner scanner = new Scanner(System.in);
+System.out.println("Please enter VIN number of vehicle you would like to remove. ");
+int vin = scanner.nextInt();
+
+for(int i = 0; i < vehicleInventory.size(); i++){
+    if(vehicleInventory.get(i).getVinNumber() == vin){
+        vehicleInventory.remove(vehicleInventory.get(i));
+    }
+}
+writeAllToFile();
     }
 
     public static void addVehicle() {
@@ -63,8 +79,8 @@ public class Dealership {
         String newModel = scanner.nextLine();
 
         System.out.println("Please enter Type: ");
-        Type newType = Type.valueOf(scanner.nextLine().toUpperCase());
-
+        Type newType = Type.valueOf(scanner.next().toUpperCase());
+        scanner.nextLine();
         System.out.println("Please enter Color: ");
         String newColor = scanner.nextLine();
 
@@ -76,6 +92,7 @@ public class Dealership {
 
         Vehicle newVehicle = new Vehicle(newVin, newYear, newMake, newModel, newType, newColor, newMileage, price);
         vehicleInventory.add(newVehicle);
+        writeAllToFile();
 
     }
 
@@ -89,7 +106,7 @@ public class Dealership {
         max = scanner.nextInt();
 
         List<Vehicle> matchingPrice = vehicleInventory.stream()
-                .filter(vehicle -> min <= vehicle.getPrice() && vehicle.getPrice() < max)
+                .filter(vehicle -> min <= vehicle.getPrice() && vehicle.getPrice() <= max)
                 .collect(Collectors.toList());
         matchingPrice.forEach(Dealership::carToString);
 
@@ -116,7 +133,7 @@ public class Dealership {
         color = scanner.nextLine();
 
         List<Vehicle> matchingColors = vehicleInventory.stream()
-                .filter(vehicle -> vehicle.getColor().equals(color))
+                .filter(vehicle -> vehicle.getColor().equalsIgnoreCase(color))
                 .collect(Collectors.toList());
         matchingColors.forEach(Dealership::carToString);
     }
@@ -148,6 +165,14 @@ public class Dealership {
 
     }
 
-
+public static void getVehicleByYear(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter the Year of vehicle you are searching for. ");
+        int matchingYear = scanner.nextInt();
+        List<Vehicle> matchingYears = vehicleInventory.stream()
+                .filter(vehicle -> vehicle.getYear() == matchingYear)
+                .collect(Collectors.toList());
+        matchingYears.forEach(Dealership::carToString);
+}
 
 }
