@@ -3,14 +3,14 @@ package org.example.DataModel;
 import org.example.Type;
 
 public class Vehicle {
-        int vinNumber;
-        int year;
-        String make;
-        String model;
-        Type type;
-        String color;
-        int odometerReading;
-        double price;
+        private int vinNumber;
+        private int year;
+        private String make;
+        private String model;
+        private Type type;
+        private String color;
+        private int odometerReading;
+        private double price;
 
         public Vehicle(int vinNumber, int year, String make, String model, Type type,
                        String color, int odometerReading, double price) {

@@ -46,7 +46,7 @@ public class DealershipFileManager {
                 double price = Double.parseDouble(cols[7]);
                 Vehicle vehicle = new Vehicle(vin, year, make, model, type, color, mileage, price);
                 vehicleInventory.add(vehicle);
-
+                reader.close();
 
             }
 

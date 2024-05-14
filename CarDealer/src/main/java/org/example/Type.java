@@ -1,5 +1,7 @@
 package org.example;
 
-public enum Type {
+import org.example.DataModel.Vehicle;
+
+public enum Type  {
     SUV, SEDAN, HATCHBACK, COUPE
 }

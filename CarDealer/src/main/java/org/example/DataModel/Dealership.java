@@ -15,7 +15,7 @@ public class Dealership {
     public static final String TITLE = "O'NEALERSHIP";
     public static final String ADDRESS = "52 GRANDEUR AVE";
     // <editor-fold desc="List of Vehicles">
-    public static List<Vehicle> vehicleInventory = new ArrayList<>(Arrays.asList(new Vehicle(11121, 2021, "Honda",
+   public static List<Vehicle> vehicleInventory = new ArrayList<>(Arrays.asList(new Vehicle(11121, 2021, "Honda",
                                                                                                         "Civic", Type.SEDAN, "Blue", 109000, 12000),
             new Vehicle(11122, 2021, "Jeep", "Compass", Type.SUV, "Red", 1000, 34000),
             new Vehicle(11123, 2022, "Acura", "TL", Type.COUPE, "Black", 20000, 26000),
@@ -92,6 +92,7 @@ writeAllToFile();
 
         Vehicle newVehicle = new Vehicle(newVin, newYear, newMake, newModel, newType, newColor, newMileage, price);
         vehicleInventory.add(newVehicle);
+        vehicleInventory.forEach(Dealership::carToString);
         writeAllToFile();
 
     }
